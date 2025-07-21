@@ -1,0 +1,351 @@
+/* Checkout Page Styles */
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+    border-radius: 10px 10px 0 0 !important;
+    padding: 1rem 1.25rem;
+}
+
+.card-header h5 {
+    color: #495057;
+    font-weight: 600;
+}
+
+/* Button Styles */
+.btn-primary {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #0056b3, #004085);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+.btn-primary:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.btn-lg {
+    padding: 12px 24px;
+    font-size: 1.1rem;
+}
+
+/* Form Controls */
+.form-control {
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+    padding: 12px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.form-control.is-invalid {
+    border-color: #dc3545;
+}
+
+.form-control.is-invalid:focus {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+.form-label {
+    font-weight: 500;
+    color: #495057;
+    margin-bottom: 0.5rem;
+}
+
+.form-text {
+    color: #6c757d;
+    font-size: 0.875rem;
+}
+
+/* Invalid Feedback */
+.invalid-feedback {
+    display: block;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    color: #dc3545;
+}
+
+/* Product Items in Cart */
+.product-item {
+    border-bottom: 1px solid #e9ecef;
+    padding: 1rem 0;
+    transition: background-color 0.3s ease;
+}
+
+.product-item:hover {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin: 0 -15px;
+    padding: 1rem 15px;
+}
+
+.product-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.product-placeholder {
+    width: 60px;
+    height: 60px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6c757d;
+}
+
+/* Order Totals */
+.order-totals {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 1rem;
+}
+
+.total-row {
+    display: flex;
+    justify-content: between;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
+.total-row:last-child {
+    border-top: 2px solid #dee2e6;
+    padding-top: 1rem;
+    font-weight: 600;
+    font-size: 1.125rem;
+}
+
+.total-amount {
+    color: #007bff;
+    font-weight: 700;
+}
+
+/* Payment Method Card */
+.payment-method-card {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    border: none;
+    color: white;
+}
+
+.payment-method-card .card-body {
+    padding: 1rem;
+}
+
+.mpesa-logo {
+    height: 30px;
+    filter: brightness(0) invert(1);
+}
+
+/* Modal Styles */
+.modal-content {
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+    border-bottom: 1px solid #e9ecef;
+    border-radius: 15px 15px 0 0;
+    background-color: #f8f9fa;
+}
+
+.modal-footer {
+    border-top: 1px solid #e9ecef;
+    border-radius: 0 0 15px 15px;
+}
+
+/* Payment Status Icons */
+.payment-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.payment-success .payment-icon {
+    color: #28a745;
+    animation: successPulse 1s ease-in-out;
+}
+
+.payment-failed .payment-icon {
+    color: #dc3545;
+    animation: shake 0.5s ease-in-out;
+}
+
+.payment-pending .payment-icon {
+    color: #007bff;
+    animation: pulse 1.5s infinite;
+}
+
+/* Animations */
+@keyframes successPulse {
+    0% { transform: scale(0.8); opacity: 0; }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Loading Spinner */
+.spinner-border-sm {
+    width: 1rem;
+    height: 1rem;
+}
+
+/* Alert Styles */
+.alert {
+    border-radius: 8px;
+    border: none;
+    font-weight: 500;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.alert-success {
+    background-color: #d1eddd;
+    color: #155724;
+}
+
+.alert-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+/* Empty Cart Styles */
+.empty-cart {
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+.empty-cart-icon {
+    color: #6c757d;
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+/* Security Badge */
+.security-badge {
+    background-color: #f8f9fa;
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    display: inline-flex;
+    align-items: center;
+    color: #6c757d;
+    font-size: 0.875rem;
+    margin-top: 1rem;
+}
+
+.security-badge i {
+    color: #28a745;
+    margin-right: 0.5rem;
+}
+
+/* County Select Styling */
+.form-select {
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+    padding: 12px;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px 12px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .card-body {
+        padding: 15px;
+    }
+    
+    .col-md-2,
+    .col-md-6,
+    .col-md-4 {
+        margin-bottom: 1rem;
+    }
+    
+    .order-totals {
+        margin-top: 0;
+    }
+    
+    .btn-lg {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+    
+    .product-item {
+        padding: 0.75rem 0;
+    }
+    
+    .modal-dialog {
+        margin: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .card-header h5 {
+        font-size: 1rem;
+    }
+    
+    .total-row {
+        font-size: 0.9rem;
+    }
+    
+    .total-row:last-child {
+        font-size: 1rem;
+    }
+    
+    .payment-icon {
+        font-size: 2.5rem;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .btn,
+    .modal,
+    .card-header,
+    #cancel-payment {
+        display: none !important;
+    }
+    
+    .card {
+        box-shadow: none;
+        border: 1px solid #dee2e6;
+    }
+}
