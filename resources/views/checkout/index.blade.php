@@ -198,7 +198,7 @@
                         </div>
                         
                         <!-- Submit Button -->
-                        <button type="submit" id="checkout-btn" class="btn btn-primary btn-lg w-100">
+                        <button type="submit" id="checkout-btn" class="btn btn-primary btn-lg w-100" style="width: 100%;">
                             <span class="btn-text">
                                 <i class="fas fa-credit-card me-2"></i>Place Order - KSh {{ number_format($totals['total'], 2) }}
                             </span>
@@ -248,5 +248,187 @@
 @endsection
 
 @section('scripts')
-<script src="{{ asset('js/checkout.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    // Form validation rules
+    const validationRules = {
+        name: {
+            required: true,
+            minLength: 2,
+            message: 'Please enter your full name (minimum 2 characters)'
+        },
+        email: {
+            required: true,
+            pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+            message: 'Please enter a valid email address'
+        },
+        phone: {
+            required: true,
+            pattern: /^(\+254|0)[17]\d{8}$/,
+            message: 'Please enter a valid Kenyan phone number (e.g., 0712345678)'
+        },
+    // Real-time validation
+    function validateField(fieldName, value) {
+        const rule = validationRules[fieldName];
+        if (!rule) return true;
+        address: {
+        const field = $(`#${fieldName}`);
+        const feedback = field.siblings('.invalid-feedback');
+            required: true,
+        // Check if required
+        if (rule.required && (!value || value.trim() === '')) {
+            showFieldError(field, feedback, rule.message);
+            return false;
+        }
+            minLength: 10,
+        // Check minimum length
+        if (rule.minLength && value.length < rule.minLength) {
+            showFieldError(field, feedback, rule.message);
+            return false;
+        }
+            message: 'Please enter your complete address (minimum 10 characters)'
+        // Check pattern
+        if (rule.pattern && !rule.pattern.test(value)) {
+            showFieldError(field, feedback, rule.message);
+            return false;
+        }
+        },
+        // Field is valid
+        showFieldSuccess(field, feedback);
+        return true;
+    }
+        city: {
+    function showFieldError(field, feedback, message) {
+        field.removeClass('is-valid').addClass('is-invalid');
+        feedback.text(message);
+    }
+            required: true,
+    function showFieldSuccess(field, feedback) {
+        field.removeClass('is-invalid').addClass('is-valid');
+        feedback.text('');
+    }
+            minLength: 2,
+    // Attach real-time validation to form fields
+    Object.keys(validationRules).forEach(fieldName => {
+        $(`#${fieldName}`).on('blur keyup', function() {
+            const value = $(this).val();
+            validateField(fieldName, value);
+        });
+    });
+            message: 'Please enter your city'
+    // Form submission
+    $('#checkout-form').on('submit', function(e) {
+        e.preventDefault();
+        
+        // Validate all fields
+        let isValid = true;
+        const formData = {};
+        
+        Object.keys(validationRules).forEach(fieldName => {
+            const value = $(`#${fieldName}`).val();
+            formData[fieldName] = value;
+            
+            if (!validateField(fieldName, value)) {
+                isValid = false;
+            }
+        });
+        },
+        // Add optional fields
+        formData.notes = $('#notes').val();
+        county: {
+        if (!isValid) {
+            showAlert('Please correct the errors in the form before proceeding.', 'error');
+            return;
+        }
+            required: true,
+        // Show loading state
+        showLoadingState(true);
+        
+        // Submit the order
+        submitOrder(formData);
+    });
+            message: 'Please select your county'
+    function submitOrder(formData) {
+        $.ajax({
+            url: '/checkout/process',
+            method: 'POST',
+            data: {
+                ...formData,
+                _token: $('meta[name="csrf-token"]').attr('content') || $('input[name="_token"]').val()
+            },
+            success: function(response) {
+                if (response.success) {
+                    // Redirect to success page
+                    window.location.href = response.redirect_url || '/checkout/success/' + response.order_id;
+                } else {
+                    showAlert(response.message || 'Order processing failed. Please try again.', 'error');
+                }
+            },
+            error: function(xhr, status, error) {
+                let message = 'An error occurred while processing your order.';
+                
+                if (xhr.responseJSON && xhr.responseJSON.message) {
+                    message = xhr.responseJSON.message;
+                } else if (xhr.responseJSON && xhr.responseJSON.errors) {
+                    // Handle validation errors
+                    const errors = xhr.responseJSON.errors;
+                    Object.keys(errors).forEach(field => {
+                        const fieldElement = $(`#${field}`);
+                        const feedback = fieldElement.siblings('.invalid-feedback');
+                        showFieldError(fieldElement, feedback, errors[field][0]);
+                    });
+                    message = 'Please correct the form errors and try again.';
+                }
+                
+                showAlert(message, 'error');
+            },
+            complete: function() {
+                showLoadingState(false);
+            }
+        });
+    }
+        }
+    function showLoadingState(show) {
+        const btn = $('#checkout-btn');
+        const btnText = btn.find('.btn-text');
+        const btnLoading = btn.find('.btn-loading');
+        
+        if (show) {
+            btn.prop('disabled', true);
+            btnText.addClass('d-none');
+            btnLoading.removeClass('d-none');
+        } else {
+            btn.prop('disabled', false);
+            btnText.removeClass('d-none');
+            btnLoading.addClass('d-none');
+        }
+    }
+    };
+    function showAlert(message, type = 'info') {
+        // Remove existing alerts
+        $('.alert-checkout').remove();
+        
+        const alertClass = {
+            'success': 'alert-success',
+            'error': 'alert-danger',
+            'info': 'alert-info',
+            'warning': 'alert-warning'
+        };
+        
+        const alert = $(`
+            <div class="alert ${alertClass[type]} alert-dismissible fade show alert-checkout" role="alert">
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        `);
+        
+        // Insert alert at the top of the container
+        $('.container.py-5').prepend(alert);
+        
+        // Scroll to top to show alert
+        $('html, body').animate({ scrollTop: 0 }, 300);
+    }
+});
+</script>
 @endsection

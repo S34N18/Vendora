@@ -99,22 +99,23 @@ Route::middleware(['auth', 'admin'])->prefix('api/admin')->group(function () {
 });
 
 // CHECKOUT ROUTES - authenticated users only
-Route::middleware(['auth'])->prefix('checkout')->name('checkout.')->group(function () {
+Route::prefix('checkout')->name('checkout.')->group(function () {
     Route::get('/', [CheckoutController::class, 'index'])->name('index');
     Route::post('/', [CheckoutController::class, 'store'])->name('store');
+    Route::post('/process', [CheckoutController::class, 'store'])->name('process');
     Route::get('/success/{order}', [CheckoutController::class, 'success'])->name('success');
     Route::post('/payment-status', [CheckoutController::class, 'checkPaymentStatus'])->name('payment-status');
 });
 
 // MPESA CALLBACK ROUTES - NO AUTHENTICATION MIDDLEWARE!
 // These endpoints are called by Safaricom's servers, not by authenticated users
-Route::post('/mpesa/callback', [MpesaController::class, 'callback'])->name('mpesa.callback');
-Route::post('/mpesa/timeout', [MpesaController::class, 'timeout'])->name('mpesa.timeout');
+Route::post('/mpesa/callback', [PaymentController::class, 'callback'])->name('mpesa.callback');
+Route::post('/mpesa/timeout', [PaymentController::class, 'timeout'])->name('mpesa.timeout');
 
 // Additional M-Pesa routes that DO require authentication (for users checking status)
 Route::middleware(['auth'])->group(function () {
-    Route::post('/mpesa/initiate-payment', [MpesaController::class, 'initiatePayment'])->name('mpesa.initiate');
-    Route::get('/mpesa/check-status', [MpesaController::class, 'checkPaymentStatus'])->name('mpesa.check-status');
+    Route::post('/mpesa/initiate-payment', [PaymentController::class, 'initiatePayment'])->name('mpesa.initiate');
+    Route::get('/mpesa/check-status', [PaymentController::class, 'checkPaymentStatus'])->name('mpesa.check-status');
 });
 
 // Dynamic product show route (keep this after all /products/* routes)

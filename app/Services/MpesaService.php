@@ -44,6 +44,15 @@ class MpesaService
 
     public function stkPush($phone, $amount, $reference, $description = 'Payment')
     {
+        // Handle array input from CheckoutController
+        if (is_array($phone)) {
+            $data = $phone; // First parameter is actually the data array
+            $phone = $data['phone'];
+            $amount = $data['amount'];
+            $reference = $data['reference'];
+            $description = $data['description'] ?? 'Payment';
+        }
+        
         $accessToken = $this->getAccessToken();
         $timestamp = Carbon::now()->format('YmdHis');
         $password = base64_encode($this->shortcode . $this->passkey . $timestamp);

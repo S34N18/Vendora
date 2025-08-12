@@ -129,7 +129,7 @@ $(document).ready(function() {
 
     function submitOrder(formData) {
         $.ajax({
-            url: '/checkout/process',
+            url: '{{ route("checkout.process") }}',
             method: 'POST',
             data: {
                 ...formData,

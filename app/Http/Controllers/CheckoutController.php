@@ -127,7 +127,12 @@ class CheckoutController extends Controller
                     'message' => 'Payment initiated successfully. Please enter your M-Pesa PIN.',
                     'order_id' => $order->id,
                     'checkout_request_id' => $mpesaResponse['CheckoutRequestID'],
-                    'redirect_url' => route('checkout.success', $order->id)
+                    'redirect_url' => route('checkout.success', $order->id),
+                    'data' => [
+                        'order_id' => $order->id,
+                        'checkout_request_id' => $mpesaResponse['CheckoutRequestID'],
+                        'phone_number' => $request->phone
+                    ]
                 ]);
             } else {
                 DB::rollback();

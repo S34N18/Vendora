@@ -15,7 +15,7 @@
                 @auth
                     <span class="user-info">Welcome, {{ Auth::user()->name }}!</span>
                     {{-- Only show Add New Product for admin users --}}
-                    @if(Auth::user()->role === 'admin')
+                    @if(Auth::user()->isAdmin())
                         <a href="{{ route('admin.products.create') }}" class="btn btn-success">Add New Product</a>
                     @endif
                 @else
@@ -104,7 +104,7 @@
                     @endguest
 
                     @auth
-                        @if(Auth::user()->role === 'admin')
+                        @if(Auth::user()->isAdmin())
                             {{-- Admin users: Show admin controls --}}
                             <div class="admin-controls">
                                 <div class="admin-badge">Admin View</div>
@@ -166,7 +166,7 @@
 
 {{-- Cart floating button - Only show for regular users --}}
 @auth
-    @if(Auth::user()->role !== 'admin')
+    @if(!Auth::user()->isAdmin())
         <a href="{{ route('cart.index') }}" class="cart-float-btn" id="cartFloatBtn">
             🛒
             <span class="cart-float-badge" id="cartFloatBadge">{{ session('cart') ? array_sum(array_column(session('cart'), 'quantity')) : 0 }}</span>
@@ -179,7 +179,7 @@
 <script>
     // Cart functionality - Only for regular users
     @auth
-        @if(Auth::user()->role !== 'admin')
+        @if(!Auth::user()->isAdmin())
             // Change quantity in the product card
             function changeQuantity(productId, change) {
                 const quantityInput = document.getElementById(`quantity-${productId}`);

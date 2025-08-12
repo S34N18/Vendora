@@ -58,7 +58,7 @@
                                 <a href="{{ route('profile.edit') }}" class="dropdown-item">
                                     👤 Profile
                                 </a>
-                                @if(Auth::user()->is_admin ?? false)
+                                @if(Auth::user()->isAdmin())
                                     <a href="{{ route('admin.dashboard') }}" class="dropdown-item">
                                         🛠️ Admin Panel
                                     </a>
@@ -112,7 +112,7 @@
                                 <a href="{{ route('profile.edit') }}" class="mobile-nav-link">
                                     👤 Profile
                                 </a>
-                                @if(Auth::user()->is_admin ?? false)
+                                @if(Auth::user()->isAdmin())
                                     <a href="{{ route('admin.dashboard') }}" class="mobile-nav-link">
                                         🛠️ Admin Panel
                                     </a>

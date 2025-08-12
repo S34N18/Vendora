@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -7,8 +8,15 @@ use App\Models\Order;
 use App\Models\MpesaTransaction;
 use Illuminate\Support\Facades\Log;
 
-class MpesaController extends Controller
+class PaymentController extends Controller
 {
+    protected $mpesaService;
+
+    public function __construct(MpesaService $mpesaService)
+    {
+        $this->mpesaService = $mpesaService;
+    }
+
     public function callback(Request $request)
     {
         // CRITICAL: Log all incoming data for debugging
