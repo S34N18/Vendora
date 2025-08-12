@@ -6,7 +6,7 @@
     <!-- Hero Section -->
     <div class="hero-section">
         <div class="hero-content">
-            <h1 class="hero-title">Welcome to Mark's Online Store</h1>
+            <h1 class="hero-title">Welcome to Vendora Supermarket</h1>
             <p class="hero-subtitle">Discover amazing products at unbeatable prices</p>
             <p class="hero-description">Explore our curated collection of premium items, carefully selected just for you.</p>
             <div class="hero-buttons">
@@ -24,7 +24,7 @@
     <!-- Features Section -->
     <section class="features-section" id="featured">
         <div class="container">
-            <h2 class="section-title">Why Choose Mark's Store?</h2>
+            <h2 class="section-title">Why Choose Vendora Supermarket?</h2>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">🚚</div>
@@ -55,7 +55,7 @@
         <div class="container">
             <div class="cta-content">
                 <h2>Ready to Start Shopping?</h2>
-                <p>Join thousands of satisfied customers who trust Mark's Store</p>
+                <p>Join thousands of satisfied customers who trust Vendora Supermarket</p>
                 <a href="{{ url('/products') }}" class="btn btn-primary btn-large">Shop Now</a>
             </div>
         </div>

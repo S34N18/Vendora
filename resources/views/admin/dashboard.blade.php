@@ -14,7 +14,7 @@
         <div class="nav-wrapper">
             <div class="nav-content">
                 <div class="nav-brand">
-                    <h1 class="nav-title">Admin Panel - Mark's Online Store</h1>
+                    <h1 class="nav-title">Admin Panel - Vendora Supermarket</h1>
                 </div>
                 <div class="nav-user-section">
                     <div class="user-info-dropdown">

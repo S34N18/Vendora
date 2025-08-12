@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Products - Mark\'s Online Store')
+@section('title', 'Products - Vendora Supermarket')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/products.css') }}">

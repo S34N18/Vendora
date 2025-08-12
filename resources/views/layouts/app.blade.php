@@ -29,6 +29,9 @@
                         <h1 class="logo-text">Mark's Store</h1>
                     </a>
                 </div>
+                        <h1 class="logo-text">Vendora Supermarket</h1>
+                    </a>
+                </div>
 
                 <!-- Desktop Navigation -->
                 <nav class="desktop-nav">
@@ -151,9 +154,9 @@
                 <div class="footer-company">
                     <div class="footer-logo">
                         <div class="logo-icon">
-                            <span class="logo-letter">M</span>
+                            <span class="logo-letter">V</span>
                         </div>
-                        <h3 class="footer-logo-text">Mark's Store</h3>
+                        <h3 class="footer-logo-text">Vendora Supermarket</h3>
                     </div>
                     <p class="footer-description">Your trusted online destination for quality products at great prices. We're committed to providing excellent service and customer satisfaction.</p>
                     <div class="social-links">

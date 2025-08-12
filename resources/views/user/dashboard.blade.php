@@ -1,7 +1,7 @@
 {{-- resources/views/user/dashboard.blade.php --}}
 @extends('layouts.app')
 
-@section('title', 'My Account - Mark\'s Online Store')
+@section('title', 'My Account - Vendora Supermarket')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/user-dashboard.css') }}">

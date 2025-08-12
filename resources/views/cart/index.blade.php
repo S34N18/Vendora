@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Shopping Cart - Mark\'s Online Store')
+@section('title', 'Shopping Cart - Vendora Supermarket')
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/cart.css') }}">

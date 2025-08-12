@@ -1,7 +1,7 @@
 {{-- resources/views/user/orders/show.blade.php --}}
 @extends('layouts.app')
 
-@section('title', 'Order #' . $order->order_number . ' - Mark\'s Online Store')
+@section('title', 'Order #' . $order->order_number . ' - Vendora Supermarket')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/user-orders.css') }}">
